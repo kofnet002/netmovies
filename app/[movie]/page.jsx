@@ -9,7 +9,7 @@ const MovieDetail = async ({ params }) => {
   );
   const res = await data.json();
   return (
-    <div className="mx-5">
+    <div className="m-7">
       <h2 className="text-2xl">{res.title}</h2>
       <h2 className="text-lg">{res.release_date}</h2>
       <h2>Runtime: {res.runtime} minutes</h2>

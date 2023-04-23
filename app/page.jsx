@@ -1,4 +1,3 @@
-import Header from "./components/Header";
 import Movie from "./components/Movie";
 
 export default async function Home() {
@@ -6,6 +5,10 @@ export default async function Home() {
     `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.API_KEY}`,
     { next: { revalidate: 60 } }
   );
+
+  // wait 1 second
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+
   const res = await data.json();
   // console.log(res)
   return (
