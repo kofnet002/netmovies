@@ -24,6 +24,9 @@ const MovieDetail = async ({ params }) => {
         width={1000}
         priority
       />
+      <h2 className="bg-red-600 inline-block px-5 py-2 my-3 rounded">
+        Overview :
+      </h2>
       <p>{res.overview}</p>
     </>
   );

@@ -2,14 +2,15 @@ import Movie from "./components/Movie";
 
 export default async function Home() {
   const data = await fetch(
-    `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.API_KEY}`
+    `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.API_KEY}`,
+    { next: { revalidate: 60 } }
   );
   const res = await data.json();
   // console.log(res)
   return (
     <main>
-      <h1 className="text-lg py-5 mx-5">Hello world</h1>
-      <div className="grid gap-10 grid-cols-fluid">
+      <h1 className="text-center text-5xl py-5 mx-5">Net Movies</h1>
+      <div className="grid gap-10 grid-cols-fluid items-center">
         {res.results.map((movie) => {
           return (
             <div key={movie.id}>
