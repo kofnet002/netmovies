@@ -1,33 +1,32 @@
-import Movie from "./components/Movie";
+"use client";
+import { useState, useEffect } from "react";
+import Movies from "./components/Movies";
+import LoadingPage from "./loading";
 
-export default async function Home() {
-  const data = await fetch(
-    `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.API_KEY}`,
-    { next: { revalidate: 60 } }
-  );
+const HomePage = () => {
+  const [movies, setMovies] = useState([]);
+  const [isloading, setIsloading] = useState(true);
 
-  // wait 1 second
-  await new Promise((resolve) => setTimeout(resolve, 1000));
+  useEffect(() => {
+    const fetchMovies = async () => {
+      const data = await fetch("/api/movies");
+      const res = await data.json();
+      setMovies(res.results);
+      // wait 1 second
+      // await new Promise((resolve) => setTimeout(resolve, 2000));
+      setIsloading(false);
+    };
+    fetchMovies();
+  }, []);
 
-  const res = await data.json();
-  // console.log(res)
+  if (isloading) {
+    <h2>Loading now...</h2>
+    // <LoadingPage />;
+  }
   return (
     <main>
-      {/* <h1 className="text-center text-5xl py-5 mx-5">Net Movies</h1> */}
-      <div className="mx-4 my-12 grid gap-10 grid-cols-fluid items-center">
-        {res.results.map((movie) => {
-          return (
-            <div key={movie.id}>
-              <Movie
-                id={movie.id}
-                title={movie.title}
-                poster_path={movie.poster_path}
-                release_date={movie.release_date}
-              />
-            </div>
-          );
-        })}
-      </div>
+      <Movies movies={movies} />
     </main>
   );
-}
+};
+export default HomePage;
