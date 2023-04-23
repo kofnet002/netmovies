@@ -3,13 +3,16 @@ import Link from "next/link";
 import { useState } from "react";
 // import {SearchIcon} from "@heroicons/react"
 
-const Header = () => {
-  const [query, setQuery] = useState("")
+const Header = ({ getSearchResults }) => {
+  const [query, setQuery] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // console.log(query)
-  }
+    const res = await fetch(`/api/movies/search?query=${query}`);
+    const movies = await res.json();
+    getSearchResults(movies);
+  };
 
   return (
     <div
@@ -19,7 +22,7 @@ const Header = () => {
       <Link href="/" className="text-red-600 font-black">
         NETMOVIES
       </Link>
-      <div className="flex">
+      <div className="flex items-center">
         {/* <SearchIcon/> */}
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -27,7 +30,7 @@ const Header = () => {
           viewBox="0 0 24 24"
           strokeWidth="1.5"
           stroke="currentColor"
-          className="w-6 h-6"
+          className="w-5 h-5 text-gray-500"
         >
           <path
             strokeLinecap="round"
@@ -39,9 +42,9 @@ const Header = () => {
           <input
             className="pl-2 bg-black outline-none"
             type="text"
-            placeholder="Search..."
+            placeholder="Search by title..."
             value={query}
-            onChange={(e)=>setQuery(e.target.value)}
+            onChange={(e) => setQuery(e.target.value)}
           />
         </form>
       </div>

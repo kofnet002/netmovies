@@ -9,7 +9,7 @@ const fetchMovies = async () => {
   await new Promise((resolve) => setTimeout(resolve, 1000));
   const res = await data.json();
 //   console.log(res);
-  return res;
+  return res.results;
 }
   export async function GET(request) {
     const data = await fetchMovies();
