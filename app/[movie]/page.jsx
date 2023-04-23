@@ -6,7 +6,16 @@ const Movie = ({ params }) => {
     <>
       <Suspense
         fallback={
-          <div className="flex item-center justify-center">
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              height: "100vh",
+              flexDirection: "column",
+            }}
+            className="flex item-center justify-center"
+          >
             Loading movie...
           </div>
         }

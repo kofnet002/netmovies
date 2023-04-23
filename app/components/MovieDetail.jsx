@@ -10,12 +10,12 @@ const MovieDetail = async ({ params }) => {
     `https://api.themoviedb.org/3/movie/${movie}?api_key=${process.env.API_KEY}`
   );
   const res = await data.json();
-  console.log(res);
+  // console.log(res);
 
   return (
     <div className="m-7">
       <h2 className="text-2xl">{res.title}</h2>
-      <div className="flex">
+      <div className="flex items-center">
         {res.genres.map((gen) => {
           return (
             <h2 className="text-sm text-bold mr-3 bg-red-600 my-2 py-1 px-2 rounded">

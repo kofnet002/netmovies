@@ -6,7 +6,7 @@ const Movies = ({ movies }) => {
 
   return (
     <>
-      <div className="mx-4 my-12 grid gap-10 grid-cols-fluid items-center">
+      <div className="mx-4 my-12 grid gap-7 grid-cols-fluid flex items-center">
         {movies.map((movie) => {
           const { id, title, release_date, poster_path } = movie;
           return (
