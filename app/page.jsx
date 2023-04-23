@@ -1,10 +1,28 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+import Movie from "./components/Movie";
 
-export default function Home() {
+export default async function Home() {
+  const data = await fetch(
+    `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.API_KEY}`
+  );
+  const res = await data.json();
+  // console.log(res)
   return (
     <main>
-      <h1 className='text-lg py-5 mx-5'>Hello world</h1>
+      <h1 className="text-lg py-5 mx-5">Hello world</h1>
+      <div className="grid gap-10 grid-cols-fluid">
+        {res.results.map((movie) => {
+          return (
+            <div key={movie.id}>
+              <Movie
+                id={movie.id}
+                title={movie.title}
+                poster_path={movie.poster_path}
+                release_date={movie.release_date}
+              />
+            </div>
+          );
+        })}
+      </div>
     </main>
-  )
+  );
 }
