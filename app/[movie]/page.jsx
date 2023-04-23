@@ -9,7 +9,7 @@ const MovieDetail = async ({ params }) => {
   );
   const res = await data.json();
   return (
-    <>
+    <div className="mx-5">
       <h2 className="text-2xl">{res.title}</h2>
       <h2 className="text-lg">{res.release_date}</h2>
       <h2>Runtime: {res.runtime} minutes</h2>
@@ -25,10 +25,10 @@ const MovieDetail = async ({ params }) => {
         priority
       />
       <h2 className="bg-red-600 inline-block px-5 py-2 my-3 rounded">
-        Overview :
+        Synopsis
       </h2>
       <p>{res.overview}</p>
-    </>
+    </div>
   );
 };
 

@@ -1,3 +1,4 @@
+import Header from "./components/Header";
 import Movie from "./components/Movie";
 
 export default async function Home() {
@@ -9,8 +10,8 @@ export default async function Home() {
   // console.log(res)
   return (
     <main>
-      <h1 className="text-center text-5xl py-5 mx-5">Net Movies</h1>
-      <div className="grid gap-10 grid-cols-fluid items-center">
+      {/* <h1 className="text-center text-5xl py-5 mx-5">Net Movies</h1> */}
+      <div className="mx-4 my-12 grid gap-10 grid-cols-fluid items-center">
         {res.results.map((movie) => {
           return (
             <div key={movie.id}>
